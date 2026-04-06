@@ -47,3 +47,59 @@ if ($insert) {
     <h4>Gagal Disimpan</h4></div>';
 }
 ?>
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-body p-2">
+                    <form method="POST" action="">
+                        
+                        <div class="form-group">
+                            <label for="kd_mapel">Kode Mapel</label>
+                            <input 
+                                type="text" 
+                                name="kd_mapel" 
+                                value="<?= $hasilkode; ?>" 
+                                placeholder="Id Kat" 
+                                class="form-control" 
+                                readonly
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nm_mapel">Nama Mapel</label>
+                            <input 
+                                type="text" 
+                                name="nm_mapel" 
+                                id="nm_mapel" 
+                                placeholder="Nama Mapel" 
+                                class="form-control"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="kkm">KKM</label>
+                            <input 
+                                type="text" 
+                                name="kkm" 
+                                id="kkm" 
+                                placeholder="KKM" 
+                                class="form-control"
+                            >
+                        </div>
+
+                        <div class="card-footer">
+                            <input 
+                                type="submit" 
+                                class="btn btn-primary" 
+                                name="tambah" 
+                                value="simpan"
+                            >
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
