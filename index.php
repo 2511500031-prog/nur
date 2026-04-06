@@ -234,7 +234,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <h5 class="card-title">Dashboard</h5>
 
                 <p class="card-text">
-                  Halo sayang
+                  <?php
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+} else {
+    $page = "";
+}
+
+if ($page == "") {
+    include "page/dashboard.php";
+} elseif (!file_exists("page/$page.php")) {
+    echo "File Tidak Ditemukan";
+} else {
+    include "page/$page.php";
+}
+?>
                 </p>
                 
               </div>
