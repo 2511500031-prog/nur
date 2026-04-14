@@ -1,6 +1,7 @@
 <?php
   session_start();
   require_once("config/koneksi.php");
+  
   if(isset($_SESSION['role'])) {
     $role = $_SESSION['role'];
 ?>
@@ -137,7 +138,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="index.php?page=kelas" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kelas</p>
                 </a>
