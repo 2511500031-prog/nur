@@ -10,24 +10,25 @@
 
 <?php
 //kode otomatis
-$carikode = mysqli_query($koneksi,"select max(id_kelas) from kelas") or die (mysqli_error($koneksi));
+$carikode = mysqli_query($koneksi,"select max(kd_guru) from guru") or die (mysqli_error($koneksi));
 $datakode = mysqli_fetch_array($carikode);
 if($datakode){
     $nilaikode = substr($datakode[0], 2);
     $kode = (int) $nilaikode;
     $kode = $kode + 1;
-    $hasilkode = "K-".str_pad($kode, 3, "0", STR_PAD_LEFT);
+    $hasilkode = "M-".str_pad($kode, 3, "0", STR_PAD_LEFT);
 } else {
-    $hasilkode = "K-";
+    $hasilkode = "M-";
 }
 
 $_SESSION["KODE"] = $hasilkode;
 
 if(isset($_POST['tambah'])){
-    $id_kelas = $_POST['id_kelas'];
-    $nm_kelas = $_POST['nm_kelas'];
+    $kd_guru = $_POST['kd_guru'];
+    $nm_guru = $_POST['nm_guru'];
+    
+    $insert = mysqli_query($koneksi, "INSERT INTO guru VALUES ('$kd_guru', '$nm_guru',)");
 
-    $insert = mysqli_query($koneksi,"INSERT INTO kelas values ('$id_kelas','$nm_kelas')");
 
 if ($insert) {
     echo '<div class="alert alert-info-dismissible">
@@ -36,7 +37,7 @@ if ($insert) {
     <h5><i class="icon fas fa-info"></i> Info </h5>
     <h4>Berhasil Disimpan</h4></div>';
     
-    echo '<meta http-equiv="refresh" content="1;url=index.php?page=kelas">';
+    echo '<meta http-equiv="refresh" content="1;url=index.php?page=guru">';
 } else {
     echo '<div class="alert alert-warning alert-dismissible">
     <button type="button" class="close" data-dismiss="alert"
@@ -45,8 +46,8 @@ if ($insert) {
     <h4>Gagal Disimpan</h4></div>';
 }
 }
-
 ?>
+
 <section class="content">
     <div class="container-fluid">
         <div class="card">
@@ -55,24 +56,34 @@ if ($insert) {
                     <form method="POST" action="">
                         
                         <div class="form-group">
-                            <label for="id_kelas">Kode kelas</label>
+                            <label for="kd_guru">Kode guru</label>
                             <input 
                                 type="text" 
-                                name="id_kelas" 
+                                name="kd_guru" 
                                 value="<?= $hasilkode; ?>" 
-                                placeholder="Id Kelas" 
+                                placeholder="Id Kat" 
                                 class="form-control" 
                                 readonly
                             >
                         </div>
 
                         <div class="form-group">
-                            <label for="nm_kelas">Nama kelas</label>
+                            <label for="nm_guru">Nama guru</label>
                             <input 
                                 type="text" 
-                                name="nm_kelas" 
-                                id="nm_kelas" 
-                                placeholder="Nama kelas" 
+                                name="nm_guru" 
+                                id="nm_guru" 
+                                placeholder="Nama guru" 
+                                class="form-control"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <input 
+                                type="text" 
+                                name="kkm" 
+                                id="kkm" 
+                                placeholder="KKM" 
                                 class="form-control"
                             >
                         </div>

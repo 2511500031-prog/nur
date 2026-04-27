@@ -9,20 +9,19 @@
 </div>
 
 <?php
-$kd = $_GET['kd'];
+$id = $_GET['id'];
 $edit = mysqli_fetch_array(mysqli_query($koneksi, "
-    SELECT * FROM mapel WHERE kd_mapel='$kd'
+    SELECT * FROM kelas WHERE id_kelas='$id'
 "));
 
 if (isset($_POST['tambah'])) {
-    $kd_mapel = $_POST['kd_mapel'];
-    $nm_mapel = $_POST['nm_mapel'];
-    $kkm      = $_POST['kkm'];
+    $id_kelas = $_POST['id_kelas'];
+    $nm_kelas = $_POST['nm_kelas'];
 
     $insert = mysqli_query($koneksi, "
-        UPDATE mapel 
-        SET nm_mapel='$nm_mapel', kkm='$kkm' 
-        WHERE kd_mapel='$kd_mapel'
+        UPDATE kelas 
+        SET nm_kelas='$nm_kelas'
+        WHERE id_kelas='$id_kelas'
     ");
 
     if ($insert) {
@@ -33,7 +32,7 @@ if (isset($_POST['tambah'])) {
             <h4>Berhasil Disimpan</h4>
         </div>';
         
-        echo '<meta http-equiv="refresh" content="1;url=index.php?page=mapel">';
+        echo '<meta http-equiv="refresh" content="1;url=index.php?page=kelas">';
     } else {
         echo '
         <div class="alert alert-warning alert-dismissible">
@@ -52,27 +51,18 @@ if (isset($_POST['tambah'])) {
                 <div class="card-body p-2">
                     <form method="POST" action="">
                         <div class="form-group">
-    <label for="kd_mapel">Kode Mapel</label>
-    <input type="text" name="kd_mapel" 
-           value="<?= $edit['kd_mapel']; ?>" 
+    <label for="id_kelas">Kode kelas</label>
+    <input type="text" name="id_kelas" 
+           value="<?= $edit['id_kelas']; ?>" 
            class="form-control" readonly>
 </div>
 
 <div class="form-group">
-    <label for="nm_mapel">Nama Mapel</label>
-    <input type="text" name="nm_mapel" 
-           value="<?= $edit['nm_mapel']; ?>" 
-           id="nm_mapel" 
-           placeholder="Nama mapel" 
-           class="form-control">
-</div>
-
-<div class="form-group">
-    <label for="kkm">KKM</label>
-    <input type="text" name="kkm" 
-           value="<?= $edit['kkm']; ?>" 
-           id="kkm" 
-           placeholder="KKM" 
+    <label for="nm_kelas">Nama kelas</label>
+    <input type="text" name="nm_kelas" 
+           value="<?= $edit['nm_kelas']; ?>" 
+           id="nm_kelas" 
+           placeholder="Nama kelas" 
            class="form-control">
 </div>
 

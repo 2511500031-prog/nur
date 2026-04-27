@@ -28,9 +28,9 @@ if(isset($_POST['tambah'])){
     $nm_mapel = $_POST['nm_mapel'];
     $kkm = $_POST['kkm'];
 
-    $insert = mysqli_query($koneksi,"INSERT INTO mapel values ('$kd_mapel','$nm_mapel','$kkm')");
-}
-?>
+    $insert = mysqli_query($koneksi, "INSERT INTO mapel VALUES ('$kd_mapel', '$nm_mapel', '$kkm')");
+
+
 if ($insert) {
     echo '<div class="alert alert-info-dismissible">
     <button type="button" class="close" data-dismiss="alert"
@@ -46,7 +46,9 @@ if ($insert) {
     <h5><i class="icon fas fa-info"></i> Info </h5>
     <h4>Gagal Disimpan</h4></div>';
 }
+}
 ?>
+
 <section class="content">
     <div class="container-fluid">
         <div class="card">
