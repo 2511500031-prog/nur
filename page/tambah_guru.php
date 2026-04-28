@@ -26,8 +26,12 @@ $_SESSION["KODE"] = $hasilkode;
 if(isset($_POST['tambah'])){
     $kd_guru = $_POST['kd_guru'];
     $nm_guru = $_POST['nm_guru'];
+    $jenkel = $_POST['jenkel'];
+    $pend_terakhir = $_POST['pend_terakhir'];
+    $hp= $_POST['hp'];
+    $alamat= $_POST['alamat'];
     
-    $insert = mysqli_query($koneksi, "INSERT INTO guru VALUES ('$kd_guru', '$nm_guru',)");
+    $insert = mysqli_query($koneksi, "INSERT INTO guru VALUES ('$kd_guru', '$nm_guru','$jenkel','$pend_terakhir','$hp','$alamat')");
 
 
 if ($insert) {
