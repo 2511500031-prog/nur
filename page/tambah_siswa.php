@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Data Mata Pelajaran</h1>
+                <h1 class="m-0 text-dark">Data siswa</h1>
             </div>
         </div>
     </div>
@@ -10,7 +10,7 @@
 
 <?php
 //kode otomatis
-$carikode = mysqli_query($koneksi,"select max(kd_guru) from guru") or die (mysqli_error($koneksi));
+$carikode = mysqli_query($koneksi,"select max(nis) from siswa") or die (mysqli_error($koneksi));
 $datakode = mysqli_fetch_array($carikode);
 if($datakode){
     $nilaikode = substr($datakode[0], 2);
@@ -24,14 +24,13 @@ if($datakode){
 $_SESSION["KODE"] = $hasilkode;
 
 if(isset($_POST['tambah'])){
-    $kd_guru = $_POST['kd_guru'];
-    $nm_guru = $_POST['nm_guru'];
+    $nis = $_POST['nis'];
+    $nm_siswa = $_POST['nm_siswa'];
     $jenkel = $_POST['jenkel'];
-    $pend_terakhir = $_POST['pend_terakhir'];
-    $hp= $_POST['hp'];
-    $alamat= $_POST['alamat'];
-    
-    $insert = mysqli_query($koneksi, "INSERT INTO guru VALUES ('$kd_guru', '$nm_guru','$jenkel','$pend_terakhir','$hp','$alamat')");
+    $hp = $_POST['hp'];
+    $id_kelas= $_POST['id_kelas'];
+   
+    $insert = mysqli_query($koneksi, "INSERT INTO siswa VALUES ('$nis', '$nm_siswa', '$jenkel', '$hp', '$id_kelas')");
 
 
 if ($insert) {
@@ -41,7 +40,7 @@ if ($insert) {
     <h5><i class="icon fas fa-info"></i> Info </h5>
     <h4>Berhasil Disimpan</h4></div>';
     
-    echo '<meta http-equiv="refresh" content="1;url=index.php?page=guru">';
+    echo '<meta http-equiv="refresh" content="1;url=index.php?page=siswa">';
 } else {
     echo '<div class="alert alert-warning alert-dismissible">
     <button type="button" class="close" data-dismiss="alert"
@@ -60,10 +59,10 @@ if ($insert) {
                     <form method="POST" action="">
                         
                         <div class="form-group">
-                            <label for="kd_guru">Kode guru</label>
+                            <label for="nis">nis</label>
                             <input 
                                 type="text" 
-                                name="kd_guru" 
+                                name="nis" 
                                 value="<?= $hasilkode; ?>" 
                                 placeholder="Id Kat" 
                                 class="form-control" 
@@ -72,12 +71,12 @@ if ($insert) {
                         </div>
 
                         <div class="form-group">
-                            <label for="nm_guru">Nama guru</label>
+                            <label for="nm_siswa">Nama siswa</label>
                             <input 
                                 type="text" 
-                                name="nm_guru" 
-                                id="nm_guru" 
-                                placeholder="Nama guru" 
+                                name="nm_siswa" 
+                                id="nm_siswa" 
+                                placeholder="Nama siswa" 
                                 class="form-control"
                             >
                         </div>
@@ -94,17 +93,6 @@ if ($insert) {
                         </div>
 
                         <div class="form-group">
-                            <label for="pend_terakhir">pend_terakhir</label>
-                            <input 
-                                type="text" 
-                                name="pend_terakhir" 
-                                id="pend_terakhir" 
-                                placeholder="pend_terakhir" 
-                                class="form-control"
-                            >
-                        </div>
-
-                        <div class="form-group">
                             <label for="hp">hp</label>
                             <input 
                                 type="text" 
@@ -114,18 +102,16 @@ if ($insert) {
                                 class="form-control"
                             >
                         </div>
-
-                         <div class="form-group">
-                            <label for="alamat">alamat</label>
+                        <div class="form-group">
+                            <label for="id_kelas">id_kelas</label>
                             <input 
                                 type="text" 
-                                name="alamat" 
-                                id="alamat" 
-                                placeholder="alamat" 
+                                name="id_kelas" 
+                                id="id_kelas" 
+                                placeholder="id_kelas" 
                                 class="form-control"
                             >
                         </div>
-
                         <div class="card-footer">
                             <input 
                                 type="submit" 

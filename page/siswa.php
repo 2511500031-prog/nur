@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Data mapel</h1>
+                <h1 class="m-0 text-dark">Data siswa</h1>
             </div>
         </div>
     </div>
@@ -12,13 +12,13 @@
 if (isset($_GET['action'])) {
     if ($_GET['action'] == "hapus") {
         $kd = $_GET['kd'];
-        $query = mysqli_query('$koneksi', "DELETE FROM mapel where kd_mapel = '$kd' ");
+        $query = mysqli_query($koneksi, "DELETE FROM siswa where kd_siswa = '$kd' ");
         if ($query) {
             echo '
             <div class="alert alert-warning alert-dismissible">
                 Berhasil Di Hapus
             </div>';
-            echo '<meta http-equiv="refresh" content="1;url=index.php?page=mapel">';
+            echo '<meta http-equiv="refresh" content="1;url=index.php?page=siswa">';
         }
     }
 }
@@ -29,40 +29,44 @@ if (isset($_GET['action'])) {
     <div class="card">
         <div class="card-body">
 
-            <a href="index.php?page=tambah_mapel" class="btn btn-primary btn-sm">
-                Tambah Mapel
+            <a href="index.php?page=tambah_siswa" class="btn btn-primary btn-sm">
+                Tambah siswa
             </a>
 
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>NO</th>
-                        <th>Kd mapel</th>
-                        <th>Nama mapel</th>
-                        <th>KKM</th>
-                        <th>Aksi</th>
+                        <th>nis</th>
+                        <th>nm_siswa</th>
+                        <th>jenkel</th>
+                        <th>hp</th>
+                        <th>id_kelas</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <?php
                     $no = 0;
-                    $query = mysqli_query('$koneksi', "SELECT * FROM mapel");
+                    $query = mysqli_query($koneksi, "SELECT * FROM siswa");
 
                     while ($result = mysqli_fetch_array($query)) {
                         $no++;
                     ?>
                         <tr>
                             <td><?= $no; ?></td>
-                            <td><?= $result['kd_mapel']; ?></td>
-                            <td><?= $result['nm_mapel']; ?></td>
-                            <td><?= $result['kkm']; ?></td>
+                            <td><?= $result['nis']; ?></td>
+                            <td><?= $result['nm_siswa']; ?></td>
+                            <td><?= $result['jenkel']; ?></td>
+                            <td><?= $result['hp']; ?></td>
+                            <td><?= $result['id_kelas']; ?></td>
+                            
                             <td>
-                                <a href="index.php?page=mapel&action=hapus&kd=<?= $result['kd_mapel'] ?>" title="">
+                                <a href="index.php?page=siswa&action=hapus&kd=<?= $result['kd_siswa'] ?>" title="">
                                     <span class="badge badge-danger">Hapus</span>
                                 </a>
 
-                                <a href="index.php?page=edit_mapel&kd=<?= $result['kd_mapel'] ?>" title="">
+                                <a href="index.php?page=edit_siswa&kd=<?= $result['kd_siswa'] ?>" title="">
                                     <span class="badge badge-warning">Edit</span>
                                 </a>
                             </td>
