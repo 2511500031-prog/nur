@@ -12,7 +12,7 @@
 if (isset($_GET['action'])) {
     if ($_GET['action'] == "hapus") {
         $kd = $_GET['kd'];
-        $query = mysqli_query($koneksi, "DELETE FROM siswa where kd_siswa = '$kd' ");
+        $query = mysqli_query($koneksi, "DELETE FROM siswa where nis = '$kd' ");
         if ($query) {
             echo '
             <div class="alert alert-warning alert-dismissible">
@@ -48,8 +48,7 @@ if (isset($_GET['action'])) {
                 <tbody>
                     <?php
                     $no = 0;
-                    $query = mysqli_query($koneksi, "SELECT * FROM siswa");
-
+                    $query = mysqli_query($koneksi, "SELECT siswa.nis, siswa.nm_siswa, siswa.jenkel, siswa.hp, kelas.nm_kelas FROM siswa join kelas on siswa.id_kelas = kelas.id_kelas");
                     while ($result = mysqli_fetch_array($query)) {
                         $no++;
                     ?>
@@ -59,14 +58,14 @@ if (isset($_GET['action'])) {
                             <td><?= $result['nm_siswa']; ?></td>
                             <td><?= $result['jenkel']; ?></td>
                             <td><?= $result['hp']; ?></td>
-                            <td><?= $result['id_kelas']; ?></td>
+                            <td><?= $result['nm_kelas']; ?></td>
                             
                             <td>
-                                <a href="index.php?page=siswa&action=hapus&kd=<?= $result['kd_siswa'] ?>" title="">
+                                <a href="index.php?page=siswa&action=hapus&kd=<?= $result['nis'] ?>" title="">
                                     <span class="badge badge-danger">Hapus</span>
                                 </a>
 
-                                <a href="index.php?page=edit_siswa&kd=<?= $result['kd_siswa'] ?>" title="">
+                                <a href="index.php?page=edit_siswa&kd=<?= $result['nis'] ?>" title="">
                                     <span class="badge badge-warning">Edit</span>
                                 </a>
                             </td>

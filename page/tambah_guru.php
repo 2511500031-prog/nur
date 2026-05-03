@@ -16,9 +16,9 @@ if($datakode){
     $nilaikode = substr($datakode[0], 2);
     $kode = (int) $nilaikode;
     $kode = $kode + 1;
-    $hasilkode = "M-".str_pad($kode, 3, "0", STR_PAD_LEFT);
+    $hasilkode = "G-".str_pad($kode, 3, "0", STR_PAD_LEFT);
 } else {
-    $hasilkode = "M-";
+    $hasilkode = "G-";
 }
 
 $_SESSION["KODE"] = $hasilkode;
@@ -82,27 +82,25 @@ if ($insert) {
                             >
                         </div>
 
-                        <div class="form-group">
-                            <label for="jenkel">jenkel</label>
-                            <input 
-                                type="text" 
-                                name="jenkel" 
-                                id="jenkel" 
-                                placeholder="jenkel" 
-                                class="form-control"
-                            >
-                        </div>
+                       <div class="form-group">
+                        <label for="jenkel">Jenis Kelamin</label>
+                        <select class="form-control" name="jenkel" id="jenkel">
+                            <option disabled selected>-- Pilih Jenis Kelamin --</option>
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
+                    </div>
 
                         <div class="form-group">
-                            <label for="pend_terakhir">pend_terakhir</label>
-                            <input 
-                                type="text" 
-                                name="pend_terakhir" 
-                                id="pend_terakhir" 
-                                placeholder="pend_terakhir" 
-                                class="form-control"
-                            >
-                        </div>
+                        <label for="pend_terakhir">pendidikan terahir</label>
+                        <select class="form-control" name="pend_terakhir" id="pend_terakhir">
+                            <option disabled selected>-- Pilih pendidikan terahir --</option>
+                            <option value="Strata 1">Strata 1</option>
+                            <option value="Strata 2">Strata 2</option>
+                            <option value="Diploma 3">Diploma 3</option>
+                            <option value="SMA Sederajat">SMA Sederajat</option>
+                        </select>
+                    </div>
 
                         <div class="form-group">
                             <label for="hp">hp</label>
