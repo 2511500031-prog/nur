@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Data Mata Pelajaran</h1>
+                <h1 class="m-0 text-dark">Data ekstrakurikuler</h1>
             </div>
         </div>
     </div>
@@ -10,29 +10,27 @@
 
 <?php
 //kode otomatis
-$carikode = mysqli_query($koneksi,"select max(kd_guru) from guru") or die (mysqli_error($koneksi));
+$carikode = mysqli_query($koneksi,"select max(kd_ekstra_2511500031) from ekstra_2511500031") or die (mysqli_error($koneksi));
 $datakode = mysqli_fetch_array($carikode);
 if($datakode){
     $nilaikode = substr($datakode[0], 2);
     $kode = (int) $nilaikode;
     $kode = $kode + 1;
-    $hasilkode = "G-".str_pad($kode, 3, "0", STR_PAD_LEFT);
+    $hasilkode = "E-".str_pad($kode, 3, "0", STR_PAD_LEFT);
 } else {
-    $hasilkode = "G-";
+    $hasilkode = "E-";
 }
 
 $_SESSION["KODE"] = $hasilkode;
 
 if(isset($_POST['tambah'])){
-    $kd_guru = $_POST['kd_guru'];
-    $nm_guru = $_POST['nm_guru'];
-    $jenkel = $_POST['jenkel'];
-    $pend_terakhir = $_POST['pend_terakhir'];
-    $hp= $_POST['hp'];
-    $alamat= $_POST['alamat'];
-    
-    $insert = mysqli_query($koneksi, "INSERT INTO guru VALUES ('$kd_guru', '$nm_guru','$jenkel','$pend_terakhir','$hp','$alamat')");
-    $insertUser = mysqli_query($koneksi, "INSERT INTO users (username, password, role) VALUES ('$kd_guru', '1234', 'guru')");
+    $id_ekstra031 = $_POST['id_ekstra031'];
+    $nama_ekstra031 = $_POST['nama_ekstra031'];
+    $ket031= $_POST['ket031'];
+    $semester031= $_POST['semester031'];
+    $thn_ajaran031= $_POST['thn_ajaran031'];
+
+    $insert = mysqli_query($koneksi, "INSERT INTO ekstra_2511500031 VALUES ('$id_ekstra031', '$nama_ekstra031', '$ket031', '$semester031', '$thn_ajaran')");
 
 
 if ($insert) {
@@ -42,7 +40,7 @@ if ($insert) {
     <h5><i class="icon fas fa-info"></i> Info </h5>
     <h4>Berhasil Disimpan</h4></div>';
     
-    echo '<meta http-equiv="refresh" content="1;url=index.php?page=guru">';
+    echo '<meta http-equiv="refresh" content="1;url=index.php?page=ekstra_2511500031">';
 } else {
     echo '<div class="alert alert-warning alert-dismissible">
     <button type="button" class="close" data-dismiss="alert"
@@ -61,10 +59,10 @@ if ($insert) {
                     <form method="POST" action="">
                         
                         <div class="form-group">
-                            <label for="kd_guru">Kode guru</label>
+                            <label for="id_ekstra031">id_ekstra031</label>
                             <input 
                                 type="text" 
-                                name="kd_guru" 
+                                name="id_ekstra031" 
                                 value="<?= $hasilkode; ?>" 
                                 placeholder="Id Kat" 
                                 class="form-control" 
@@ -73,54 +71,43 @@ if ($insert) {
                         </div>
 
                         <div class="form-group">
-                            <label for="nm_guru">Nama guru</label>
+                            <label for="nama_ekstra031">nama_ekstra031</label>
                             <input 
                                 type="text" 
-                                name="nm_guru" 
-                                id="nm_guru" 
-                                placeholder="Nama guru" 
+                                name="nama_ekstra031" 
+                                id="nama_ekstra031" 
+                                placeholder="nama_ekstra031" 
                                 class="form-control"
                             >
                         </div>
 
-                       <div class="form-group">
-                        <label for="jenkel">Jenis Kelamin</label>
-                        <select class="form-control" name="jenkel" id="jenkel">
-                            <option disabled selected>-- Pilih Jenis Kelamin --</option>
-                            <option value="Laki-laki">Laki-laki</option>
-                            <option value="Perempuan">Perempuan</option>
-                        </select>
-                    </div>
-
                         <div class="form-group">
-                        <label for="pend_terakhir">pendidikan terahir</label>
-                        <select class="form-control" name="pend_terakhir" id="pend_terakhir">
-                            <option disabled selected>-- Pilih pendidikan terahir --</option>
-                            <option value="Strata 1">Strata 1</option>
-                            <option value="Strata 2">Strata 2</option>
-                            <option value="Diploma 3">Diploma 3</option>
-                            <option value="SMA Sederajat">SMA Sederajat</option>
-                        </select>
-                    </div>
-
-                        <div class="form-group">
-                            <label for="hp">hp</label>
+                            <label for="ket031">ket031/label>
                             <input 
                                 type="text" 
-                                name="hp" 
-                                id="hp" 
-                                placeholder="hp" 
+                                name="ket031" 
+                                id="ket031" 
+                                placeholder="ket031" 
                                 class="form-control"
                             >
                         </div>
-
                          <div class="form-group">
-                            <label for="alamat">alamat</label>
+                            <label for="semester031">semester031/label>
                             <input 
                                 type="text" 
-                                name="alamat" 
-                                id="alamat" 
-                                placeholder="alamat" 
+                                name="semester031" 
+                                id="semester031" 
+                                placeholder="semester031" 
+                                class="form-control"
+                            >
+                        </div>
+                            <div class="form-group">
+                            <label for="thn_ajaran031">thn_ajaran031/label>
+                            <input 
+                                type="text" 
+                                name="thn_ajaran031" 
+                                id="thn_ajaran031" 
+                                placeholder="thn_ajaran031" 
                                 class="form-control"
                             >
                         </div>

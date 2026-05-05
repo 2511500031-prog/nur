@@ -42,6 +42,7 @@ if (isset($_GET['action'])) {
                         <th>jenkel</th>
                         <th>hp</th>
                         <th>id_kelas</th>
+                        <th>aksi</th>
                     </tr>
                 </thead>
 
