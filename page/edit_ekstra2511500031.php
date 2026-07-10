@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Edit Mata Pelajaran</h1>
+                <h1 class="m-0 text-dark">Edit ekstrakurikuler</h1>
             </div>
         </div>
     </div>
@@ -11,18 +11,20 @@
 <?php
 $kd = $_GET['kd'];
 $edit = mysqli_fetch_array(mysqli_query($koneksi, "
-    SELECT * FROM mapel WHERE kd_mapel='$kd'
+    SELECT * FROM ekstra_2511500031 WHERE id_ekstra031='$kd'
 "));
 
 if (isset($_POST['tambah'])) {
-    $kd_mapel = $_POST['kd_mapel'];
-    $nm_mapel = $_POST['nm_mapel'];
-    $kkm      = $_POST['kkm'];
+    $id_ekstra031 = $_POST['id_ekstra031'];
+    $nama_ekstra031 = $_POST['nama_ekstra031'];
+    $ket031     = $_POST['ket031'];
+    $semester031   = $_POST['semester031'];
+    $thn_ajaran031  = $_POST['thn_ajaran031'];
 
     $insert = mysqli_query($koneksi, "
-        UPDATE mapel 
-        SET nm_mapel='$nm_mapel', kkm='$kkm' 
-        WHERE kd_mapel='$kd_mapel'
+        UPDATE ekstra_2511500031 
+        SET id_ekstra031='$id_ekstra031', nama_ekstra031 = '$nama_ekstra031', ket031 = '$ket031', semester031 ='$semester031', thn_ajaran031 = '$thn_ajaran031'
+        WHERE id_ekstra031='$id_ekstra031'
     ");
 
     if ($insert) {
@@ -33,7 +35,7 @@ if (isset($_POST['tambah'])) {
             <h4>Berhasil Disimpan</h4>
         </div>';
         
-        echo '<meta http-equiv="refresh" content="1;url=index.php?page=mapel">';
+        echo '<meta http-equiv="refresh" content="1;url=index.php?page=ekstra_2511500031">';
     } else {
         echo '
         <div class="alert alert-warning alert-dismissible">
@@ -41,6 +43,7 @@ if (isset($_POST['tambah'])) {
             <h5><i class="icon fas fa-info"></i> Info</h5>
             <h4>Gagal Disimpan</h4>
         </div>';
+        die(mysqli_error($koneksi));
     }
 }
 ?>
@@ -52,30 +55,45 @@ if (isset($_POST['tambah'])) {
                 <div class="card-body p-2">
                     <form method="POST" action="">
                         <div class="form-group">
-    <label for="kd_mapel">Kode Mapel</label>
-    <input type="text" name="kd_mapel" 
-           value="<?= $edit['kd_mapel']; ?>" 
+    <label for="id_ekstra031">id_ekstra031</label>
+    <input type="text" name="id_ekstra031" 
+           value="<?= $edit['id_ekstra031']; ?>" 
            class="form-control" readonly>
 </div>
 
 <div class="form-group">
-    <label for="nm_mapel">Nama Mapel</label>
-    <input type="text" name="nm_mapel" 
-           value="<?= $edit['nm_mapel']; ?>" 
-           id="nm_mapel" 
-           placeholder="Nama mapel" 
+    <label for="nama_ekstra031">Nama_ekstra031</label>
+    <input type="text" name="nama_ekstra031" 
+           value="<?= $edit['nama_ekstra031']; ?>" 
+           id="nama_ekstra031" 
+           placeholder="nama_ekstra031" 
            class="form-control">
 </div>
 
 <div class="form-group">
-    <label for="kkm">KKM</label>
-    <input type="text" name="kkm" 
-           value="<?= $edit['kkm']; ?>" 
+    <label for="ket031">ket031</label>
+    <input type="text" name="ket031" 
+           value="<?= $edit['ket031']; ?>" 
            id="kkm" 
-           placeholder="KKM" 
+           placeholder="Ket031" 
+           class="form-control">
+</div>
+<div class="form-group">
+    <label for="semester031">semester031</label>
+    <input type="text" name="semester031" 
+           value="<?= $edit['semester031']; ?>" 
+           id="semester031" 
+           placeholder="semester031" 
            class="form-control">
 </div>
 
+    <label for="thn_ajaran031">thn_ajaran031</label>
+    <input type="text" name="thn_ajaran031" 
+           value="<?= $edit['thn_ajaran031']; ?>" 
+           id="thn_ajaran031" 
+           placeholder="thn_ajaran031" 
+           class="form-control">
+</div>
 <div class="card-footer">
     <input type="submit" 
            class="btn btn-primary" 

@@ -12,7 +12,7 @@
 if (isset($_GET['action'])) {
     if ($_GET['action'] == "hapus") {
         $kd = $_GET['kd'];
-        $query = mysqli_query($koneksi, "DELETE FROM ekstra_2511500031 where kd_ekstra_2511500031 = '$kd' ");
+        $query = mysqli_query($koneksi, "DELETE FROM ekstra_2511500031 where id_ekstra031 = '$kd' ");
         if ($query) {
             echo '
             <div class="alert alert-warning alert-dismissible">
@@ -29,8 +29,8 @@ if (isset($_GET['action'])) {
     <div class="card">
         <div class="card-body">
 
-            <a href="index.php?page=tambah_ekstra_2511500031" class="btn btn-primary btn-sm">
-                Tambah ekstrakurikuler
+            <a href="index.php?page=tambah_ekstra2511500031" class="btn btn-primary btn-sm">
+                tambah ekstrakurikuler
             </a>
 
             <table class="table table-striped">
@@ -66,7 +66,7 @@ if (isset($_GET['action'])) {
                                     <span class="badge badge-danger">Hapus</span>
                                 </a>
 
-                                <a href="index.php?page=edit_ekstra_2511500031&kd=<?= $result['id_ekstra031'] ?>" title="">
+                                <a href="index.php?page=edit_ekstra2511500031&kd=<?= $result['id_ekstra031'] ?>" title="">
                                     <span class="badge badge-warning">Edit</span>
                                 </a>
                             </td>

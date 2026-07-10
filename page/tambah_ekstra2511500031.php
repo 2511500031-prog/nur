@@ -10,7 +10,7 @@
 
 <?php
 //kode otomatis
-$carikode = mysqli_query($koneksi,"select max(kd_ekstra_2511500031) from ekstra_2511500031") or die (mysqli_error($koneksi));
+$carikode = mysqli_query($koneksi,"select max(id_ekstra031) from ekstra_2511500031") or die (mysqli_error($koneksi));
 $datakode = mysqli_fetch_array($carikode);
 if($datakode){
     $nilaikode = substr($datakode[0], 2);
@@ -30,7 +30,7 @@ if(isset($_POST['tambah'])){
     $semester031= $_POST['semester031'];
     $thn_ajaran031= $_POST['thn_ajaran031'];
 
-    $insert = mysqli_query($koneksi, "INSERT INTO ekstra_2511500031 VALUES ('$id_ekstra031', '$nama_ekstra031', '$ket031', '$semester031', '$thn_ajaran')");
+    $insert = mysqli_query($koneksi, "INSERT INTO ekstra_2511500031 VALUES ('$id_ekstra031', '$nama_ekstra031', '$ket031', '$semester031', '$thn_ajaran031')");
 
 
 if ($insert) {
